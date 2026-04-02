@@ -1,1 +1,833 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐣 Velikonoční výzva</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brown:#3D2B1F;--soil:#8B5E3C;--cream:#FFFBF0;
+  --pink:#FF6B9D;--purple:#C44DFF;--orange:#FF8C42;
+  --shadow:rgba(61,43,31,0.2);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Quicksand',sans-serif;background:linear-gradient(180deg,#87CEEB 0%,#B8DFFF 38%,#D4F5C4 68%,#5DBB63 100%);min-height:100vh;overflow-x:hidden;}
 
+/* CLOUDS */
+.clouds{position:fixed;top:0;left:0;right:0;height:210px;pointer-events:none;z-index:0;overflow:hidden;}
+.cloud{position:absolute;background:white;border-radius:50px;opacity:0.88;animation:cloudMove linear infinite;}
+.cloud::before,.cloud::after{content:'';position:absolute;background:white;border-radius:50%;}
+.c1{width:130px;height:42px;top:28px;animation-duration:30s;animation-delay:-4s;}
+.c1::before{width:65px;height:65px;top:-33px;left:18px;}.c1::after{width:44px;height:44px;top:-22px;left:55px;}
+.c2{width:95px;height:32px;top:80px;animation-duration:24s;animation-delay:-14s;}
+.c2::before{width:48px;height:48px;top:-24px;left:12px;}.c2::after{width:36px;height:36px;top:-16px;left:44px;}
+.c3{width:165px;height:54px;top:18px;animation-duration:38s;animation-delay:-22s;}
+.c3::before{width:76px;height:76px;top:-40px;left:22px;}.c3::after{width:58px;height:58px;top:-30px;left:78px;}
+@keyframes cloudMove{from{transform:translateX(-220px)}to{transform:translateX(110vw)}}
+
+.bg-float{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.bf{position:absolute;opacity:0.28;animation:bfUp linear infinite;}
+@keyframes bfUp{from{transform:translateY(0) rotate(0);}to{transform:translateY(-108vh) rotate(360deg);}}
+
+/* GRASS */
+.grass-layer{position:fixed;bottom:0;left:0;right:0;pointer-events:none;z-index:1;}
+.grass-back{height:72px;background:linear-gradient(180deg,#4aaa50,#3D8B42);clip-path:polygon(0% 45%,2% 5%,4% 40%,6% 8%,8% 35%,10% 2%,12% 42%,14% 10%,16% 35%,18% 4%,20% 40%,22% 12%,24% 32%,26% 2%,28% 42%,30% 8%,32% 35%,34% 6%,36% 40%,38% 10%,40% 30%,42% 2%,44% 42%,46% 12%,48% 32%,50% 4%,52% 40%,54% 10%,56% 30%,58% 2%,60% 42%,62% 8%,64% 35%,66% 6%,68% 40%,70% 10%,72% 30%,74% 2%,76% 42%,78% 12%,80% 32%,82% 4%,84% 40%,86% 10%,88% 30%,90% 2%,92% 42%,94% 12%,96% 30%,98% 4%,100% 45%,100% 100%,0% 100%);}
+.grass-front{height:50px;background:linear-gradient(180deg,#5DBB63,#4aaa50);clip-path:polygon(0% 60%,1% 8%,2% 55%,3% 4%,5% 50%,6% 0%,8% 56%,9% 14%,11% 44%,12% 0%,14% 56%,15% 20%,17% 40%,18% 0%,20% 58%,21% 12%,23% 48%,24% 0%,26% 55%,27% 18%,29% 42%,30% 0%,32% 58%,33% 15%,35% 45%,36% 0%,38% 55%,39% 20%,41% 40%,42% 0%,44% 58%,45% 12%,47% 48%,48% 0%,50% 55%,51% 18%,53% 42%,54% 0%,56% 58%,57% 15%,59% 45%,60% 0%,62% 55%,63% 20%,65% 40%,66% 0%,68% 58%,69% 12%,71% 48%,72% 0%,74% 55%,75% 18%,77% 42%,78% 0%,80% 58%,81% 15%,83% 45%,84% 0%,86% 55%,87% 20%,89% 40%,90% 0%,92% 58%,93% 12%,95% 48%,96% 0%,98% 55%,99% 18%,100% 60%,100% 100%,0% 100%);}
+
+/* MEADOW */
+.meadow-scene{position:fixed;bottom:44px;left:0;right:0;pointer-events:none;z-index:2;height:80px;overflow:hidden;}
+.flower{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center;}
+.flower-stem{width:3px;border-radius:2px;background:linear-gradient(180deg,#3D8B42,#5DBB63);}
+.flower-head{font-size:1.4rem;display:block;animation:flowerSway ease-in-out infinite;transform-origin:50% 100%;}
+@keyframes flowerSway{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+.chicken{position:absolute;bottom:6px;font-size:1.6rem;animation:chickenWalk linear infinite;}
+@keyframes chickenWalk{0%{transform:translateX(0) scaleX(1);}49%{transform:translateX(60px) scaleX(1);}50%{transform:translateX(60px) scaleX(-1);}99%{transform:translateX(0) scaleX(-1);}100%{transform:translateX(0) scaleX(1);}}
+.butterfly{position:absolute;font-size:1.3rem;animation:butterflyFly ease-in-out infinite;}
+@keyframes butterflyFly{0%{transform:translate(0,0);}25%{transform:translate(18px,-20px);}50%{transform:translate(36px,-8px);}75%{transform:translate(18px,-28px);}100%{transform:translate(0,0);}}
+.bunny-peek{position:absolute;bottom:2px;font-size:1.8rem;animation:bunnyPeek 6s ease-in-out infinite;}
+@keyframes bunnyPeek{0%,35%,100%{transform:translateY(110%);}45%,75%{transform:translateY(0);}}
+.grass-egg{position:absolute;bottom:54px;font-size:1.2rem;animation:eggWobble 3s ease-in-out infinite;}
+@keyframes eggWobble{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+
+/* SCREENS */
+.screen{display:none;position:relative;z-index:10;min-height:100vh;padding:20px 20px 130px;flex-direction:column;align-items:center;justify-content:flex-start;}
+.screen.active{display:flex;}
+#screen-home{justify-content:center;}
+
+/* SUN */
+.sun{width:82px;height:82px;background:radial-gradient(circle,#FFE44D,#FFB300);border-radius:50%;box-shadow:0 0 0 16px rgba(255,220,50,0.2),0 0 0 32px rgba(255,200,30,0.1);animation:sunPulse 3s ease-in-out infinite;margin-bottom:-8px;z-index:2;position:relative;}
+@keyframes sunPulse{0%,100%{box-shadow:0 0 0 16px rgba(255,220,50,0.2),0 0 0 32px rgba(255,200,30,0.1);}50%{box-shadow:0 0 0 26px rgba(255,220,50,0.25),0 0 0 52px rgba(255,200,30,0.12);}}
+
+/* HANGING EGGS */
+.hanging-row{display:flex;justify-content:center;align-items:flex-start;gap:18px;height:120px;margin-bottom:10px;}
+.hang-wrap{display:flex;flex-direction:column;align-items:center;}
+.hang-string{width:2px;height:34px;background:linear-gradient(180deg,rgba(139,94,60,0.22),rgba(139,94,60,0.52));border-radius:1px;}
+.hang-egg-img{width:44px;height:54px;object-fit:contain;transform-origin:top center;animation:pendulum var(--dur,2.1s) ease-in-out infinite;animation-delay:var(--delay,0s);filter:drop-shadow(0 4px 8px rgba(61,43,31,0.25));border-radius:50%/60%;}
+@keyframes pendulum{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}
+
+/* HOME CARD */
+.home-card{background:linear-gradient(145deg,rgba(255,251,240,0.97),rgba(255,240,210,0.95));border-radius:42px;padding:28px 28px 30px;max-width:440px;width:100%;text-align:center;box-shadow:0 28px 80px var(--shadow),0 0 0 5px rgba(255,200,80,0.35),0 0 0 10px rgba(255,150,80,0.15);animation:cardPop 0.8s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden;}
+@keyframes cardPop{from{transform:scale(0.4) rotate(-8deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+.bunny-home{font-size:4.5rem;display:block;animation:bunnyBounce 1.8s ease-in-out infinite;}
+@keyframes bunnyBounce{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-16px) rotate(3deg);}}
+.home-title{font-family:'Baloo 2',cursive;font-size:2.5rem;font-weight:900;background:linear-gradient(135deg,#C44DFF,#FF6B9D,#FF8C42);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin:8px 0;}
+.home-sub{font-size:0.97rem;color:var(--soil);font-weight:700;margin-bottom:22px;line-height:1.7;}
+.btn-main{background:linear-gradient(135deg,#FF6B9D,#FF8C42);color:white;border:none;border-radius:50px;padding:15px 42px;font-size:1.28rem;font-family:'Baloo 2',cursive;font-weight:800;cursor:pointer;box-shadow:0 10px 28px rgba(255,107,157,0.45);transition:all 0.2s;display:inline-block;}
+.btn-main:hover{transform:translateY(-4px) scale(1.04);}
+.btn-ghost{background:rgba(196,77,255,0.1);color:#C44DFF;border:2.5px solid rgba(196,77,255,0.3);border-radius:50px;padding:10px 24px;font-size:0.93rem;font-family:'Baloo 2',cursive;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:10px;display:inline-block;}
+.btn-ghost:hover{background:rgba(196,77,255,0.18);transform:scale(1.04);}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:none;justify-content:space-between;align-items:center;padding:9px 14px;background:rgba(255,251,240,0.93);backdrop-filter:blur(14px);border-bottom:3px solid rgba(255,200,80,0.35);box-shadow:0 4px 20px rgba(61,43,31,0.1);}
+.topbar-logo{font-family:'Baloo 2',cursive;font-weight:900;font-size:1.1rem;background:linear-gradient(135deg,#C44DFF,#FF6B9D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.basket-topbtn{background:linear-gradient(135deg,#FFE66D,#FF8C42);border:none;border-radius:40px;padding:7px 16px;font-family:'Baloo 2',cursive;font-weight:800;font-size:0.93rem;color:white;cursor:pointer;box-shadow:0 4px 14px rgba(255,140,66,0.4);transition:transform 0.15s;display:flex;align-items:center;gap:6px;}
+.basket-topbtn:hover{transform:scale(1.07);}
+.hint-topbtn{background:linear-gradient(135deg,#a8e6cf,#4DFFB4);border:none;border-radius:40px;padding:7px 14px;font-family:'Baloo 2',cursive;font-weight:800;font-size:0.93rem;color:#1a5c3a;cursor:pointer;box-shadow:0 4px 14px rgba(77,255,180,0.35);transition:transform 0.15s;display:flex;align-items:center;gap:5px;}
+.hint-topbtn:hover{transform:scale(1.07);}
+.prog-bar-wrap{position:fixed;top:56px;left:0;right:0;z-index:99;height:7px;background:rgba(255,220,150,0.35);display:none;}
+.prog-bar{height:100%;background:linear-gradient(90deg,#FF6B9D,#C44DFF,#4DC3FF);transition:width 0.8s cubic-bezier(0.34,1.56,0.64,1);border-radius:0 4px 4px 0;}
+
+/* MAIN */
+#screen-main{padding-top:74px;justify-content:flex-start;}
+.main-inner{max-width:420px;width:100%;display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:8px;}
+.scan-card{background:rgba(255,251,240,0.97);border-radius:26px;padding:18px 20px;width:100%;text-align:center;box-shadow:0 10px 30px var(--shadow);border:3px solid rgba(255,255,255,0.8);}
+.scan-icon{font-size:2.8rem;display:block;margin-bottom:4px;animation:scanPulse 2.2s ease-in-out infinite;}
+@keyframes scanPulse{0%,100%{transform:scale(1) rotate(0);}50%{transform:scale(1.12) rotate(8deg);}}
+.scan-title{font-family:'Baloo 2',cursive;font-size:1.35rem;font-weight:900;color:var(--brown);margin-bottom:5px;}
+.scan-desc{font-size:0.86rem;font-weight:700;color:var(--soil);line-height:1.6;}
+
+/* BASKET */
+.basket-section{width:100%;max-width:360px;}
+.basket-handle-row{display:flex;justify-content:center;margin-bottom:-2px;}
+.basket-handle{width:156px;height:68px;border:13px solid #6B4226;border-radius:78px 78px 0 0;border-bottom:none;position:relative;animation:handleSway 7s ease-in-out infinite;transform-origin:50% 100%;}
+.basket-handle::after{content:'';position:absolute;top:5px;left:5px;right:5px;height:55%;border:5px solid rgba(196,130,60,0.7);border-radius:60px 60px 0 0;border-bottom:none;}
+@keyframes handleSway{0%,100%{transform:rotate(-2.5deg);}50%{transform:rotate(2.5deg);}}
+.basket-rim{height:18px;background:linear-gradient(180deg,#8B5E3C,#6B4226);border-radius:10px 10px 0 0;box-shadow:0 3px 8px rgba(61,43,31,0.3);}
+.basket-body{background:#C4874F;background-image:repeating-linear-gradient(0deg,rgba(107,66,38,0.22) 0,rgba(107,66,38,0.22) 2px,transparent 2px,transparent 18px),repeating-linear-gradient(90deg,rgba(107,66,38,0.14) 0,rgba(107,66,38,0.14) 1px,transparent 1px,transparent 22px);border-radius:0 0 32px 32px;min-height:130px;padding:14px 12px 18px;box-shadow:0 14px 32px rgba(61,43,31,0.28),inset 0 -6px 14px rgba(107,66,38,0.28);position:relative;overflow:hidden;}
+.basket-body::after{content:'';position:absolute;bottom:0;left:0;right:0;height:28px;background:linear-gradient(180deg,transparent,rgba(107,66,38,0.28));border-radius:0 0 32px 32px;pointer-events:none;}
+.basket-eggs-area{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;align-items:flex-end;min-height:80px;position:relative;z-index:1;}
+.b-egg{width:46px;flex-shrink:0;}
+.b-egg img{width:46px;height:56px;object-fit:contain;display:block;filter:drop-shadow(0 3px 6px rgba(61,43,31,0.3));border-radius:50%/60%;}
+.b-egg.fresh{animation:eggDrop 0.65s cubic-bezier(0.34,1.56,0.64,1) both;}
+@keyframes eggDrop{0%{transform:translateY(-130px) scale(0.3) rotate(-20deg);opacity:0;}60%{transform:translateY(8px) scale(1.08) rotate(5deg);opacity:1;}80%{transform:translateY(-4px) scale(0.97);}100%{transform:translateY(0) scale(1);opacity:1;}}
+.basket-empty{width:100%;text-align:center;font-weight:700;color:rgba(107,66,38,0.45);font-size:0.82rem;padding:18px 0;}
+.basket-count{text-align:center;margin-top:10px;font-family:'Baloo 2',cursive;font-weight:900;font-size:1.05rem;color:var(--brown);}
+.basket-count b{color:#FF6B9D;}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(15,8,3,0.68);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);}
+.overlay.open{display:flex;}
+.modal{background:linear-gradient(155deg,#FFFBF0,#FFF3DC);border-radius:36px;padding:28px 22px;max-width:420px;width:100%;text-align:center;box-shadow:0 40px 100px rgba(61,43,31,0.32);animation:mPop 0.4s cubic-bezier(0.34,1.56,0.64,1);position:relative;max-height:92vh;overflow-y:auto;}
+@keyframes mPop{from{transform:scale(0.45) rotate(-6deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+.mclose{position:absolute;top:13px;right:15px;background:rgba(200,150,100,0.12);border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;color:#bbb;transition:all 0.15s;display:flex;align-items:center;justify-content:center;}
+.mclose:hover{background:#FF6B9D;color:white;transform:rotate(90deg);}
+.modal-egg-img{width:90px;height:110px;object-fit:contain;margin:0 auto 10px;display:block;animation:mFloat 2s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(61,43,31,0.22));border-radius:50%/60%;}
+@keyframes mFloat{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-10px) rotate(5deg);}}
+.modal-rotten-svg{width:90px;margin:0 auto 10px;display:block;animation:mFloat 2s ease-in-out infinite;}
+.modal-rotten-svg svg{width:90px;height:auto;display:block;}
+.m-title{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:900;color:var(--brown);margin-bottom:10px;}
+.m-question{background:rgba(255,230,109,0.2);border:2px solid rgba(255,230,109,0.48);border-radius:16px;padding:13px 15px;font-size:0.96rem;font-weight:700;color:var(--brown);line-height:1.65;margin-bottom:14px;}
+
+/* SCAN task */
+.scan-found{font-size:3rem;display:block;margin-bottom:8px;}
+.scan-found-text{font-size:1rem;font-weight:700;color:var(--soil);margin-bottom:18px;line-height:1.6;}
+.btn-collect{background:linear-gradient(135deg,#4DFFB4,#00C471);color:white;border:none;border-radius:50px;padding:14px 36px;font-size:1.2rem;font-family:'Baloo 2',cursive;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(0,196,113,0.4);transition:all 0.2s;}
+.btn-collect:hover{transform:scale(1.05);}
+
+/* ANSWER task */
+.ans-row{display:flex;gap:9px;margin-top:12px;}
+.ans-inp{flex:1;padding:12px 14px;border:3px solid rgba(196,77,255,0.28);border-radius:16px;font-size:0.96rem;font-family:'Quicksand',sans-serif;font-weight:700;color:var(--brown);outline:none;background:white;transition:border-color 0.2s;text-align:center;}
+.ans-inp:focus{border-color:#C44DFF;}
+.ans-btn{background:linear-gradient(135deg,#C44DFF,#FF6B9D);color:white;border:none;border-radius:16px;padding:12px 17px;font-family:'Baloo 2',cursive;font-weight:800;font-size:0.96rem;cursor:pointer;transition:transform 0.15s;white-space:nowrap;}
+.ans-btn:hover{transform:scale(1.05);}
+
+/* CHOICE task */
+.choices-grid{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+.choice-card{background:white;border:3px solid rgba(196,77,255,0.22);border-radius:16px;padding:13px 16px;font-size:0.97rem;font-weight:700;color:var(--brown);cursor:pointer;transition:all 0.2s;text-align:left;}
+.choice-card:hover{border-color:#C44DFF;background:rgba(196,77,255,0.06);transform:translateX(4px);}
+.choice-card.correct{border-color:#00C471;background:rgba(0,196,113,0.1);animation:correctFlash 0.5s ease;}
+.choice-card.wrong{border-color:#FF6B9D;background:rgba(255,107,157,0.1);animation:wrongShake 0.4s ease;}
+@keyframes correctFlash{0%,100%{transform:scale(1);}50%{transform:scale(1.03);}}
+@keyframes wrongShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+
+/* CIPHER task */
+.cipher-img{width:100%;max-width:340px;border-radius:16px;margin:10px auto 16px;display:block;box-shadow:0 6px 20px rgba(61,43,31,0.15);}
+
+.feedback{font-size:0.96rem;font-weight:800;margin-top:9px;min-height:20px;}
+.feedback.ok{color:#00C471;}
+.feedback.err{color:#FF6B9D;}
+.done-msg{color:#00C471;font-weight:800;font-size:0.97rem;margin-top:10px;}
+.rotten-desc{font-size:0.93rem;font-weight:700;color:#888;margin-bottom:16px;line-height:1.6;}
+.rickroll-btn{display:inline-block;background:linear-gradient(135deg,#888,#aaa);color:white;border-radius:40px;padding:12px 28px;font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;text-decoration:none;transition:all 0.2s;}
+.rickroll-btn:hover{transform:scale(1.06);}
+
+/* HINT PANEL */
+.hint-overlay{display:none;position:fixed;inset:0;background:rgba(15,8,3,0.68);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);}
+.hint-overlay.open{display:flex;}
+.hint-panel{background:linear-gradient(155deg,#f0fff8,#e0fff2);border-radius:36px;padding:28px 22px;max-width:420px;width:100%;text-align:center;box-shadow:0 40px 100px rgba(61,43,31,0.32);animation:mPop 0.4s cubic-bezier(0.34,1.56,0.64,1);position:relative;max-height:85vh;overflow-y:auto;}
+.hint-panel-title{font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:900;color:var(--brown);margin-bottom:16px;}
+.hint-card{background:white;border-radius:18px;padding:14px 16px;margin-bottom:10px;text-align:left;box-shadow:0 4px 14px rgba(61,43,31,0.1);border-left:5px solid #4DFFB4;}
+.hint-card-egg{font-family:'Baloo 2',cursive;font-size:0.82rem;font-weight:900;color:#00a066;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.hint-card-egg img{width:24px;height:30px;object-fit:contain;border-radius:50%/60%;}
+.hint-card-text{font-size:0.93rem;font-weight:700;color:var(--brown);line-height:1.5;}
+.hint-empty{font-size:1rem;color:var(--soil);font-weight:700;padding:20px 0;opacity:0.7;}
+.hint-close{position:absolute;top:13px;right:15px;background:rgba(0,196,113,0.12);border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;color:#00a066;transition:all 0.15s;display:flex;align-items:center;justify-content:center;}
+.hint-close:hover{background:#4DFFB4;transform:rotate(90deg);}
+
+/* WIN */
+#screen-win{justify-content:center;}
+.win-card{background:linear-gradient(145deg,rgba(255,251,240,0.98),rgba(255,240,180,0.96));border-radius:42px;padding:40px 32px;max-width:450px;width:100%;text-align:center;box-shadow:0 30px 80px var(--shadow),0 0 0 5px rgba(255,200,80,0.4),0 0 0 10px rgba(255,107,157,0.2);animation:cardPop 0.6s cubic-bezier(0.34,1.56,0.64,1);}
+.win-trophy{font-size:5.5rem;display:block;animation:trophySpin 2.5s ease-in-out infinite;}
+@keyframes trophySpin{0%,100%{transform:rotate(-8deg) scale(1);}50%{transform:rotate(8deg) scale(1.1);}}
+.win-title{font-family:'Baloo 2',cursive;font-size:2.3rem;font-weight:900;background:linear-gradient(135deg,#FFD700,#FF8C42,#FF6B9D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:10px 0;}
+.win-desc{color:var(--soil);font-weight:700;font-size:0.97rem;line-height:1.7;margin-bottom:18px;}
+.win-box{background:linear-gradient(135deg,rgba(255,230,100,0.35),rgba(255,140,66,0.2));border:3px dashed #FF8C42;border-radius:24px;padding:20px;margin-bottom:22px;}
+.win-box-icon{font-size:3rem;display:block;margin-bottom:6px;}
+.win-box-title{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:900;color:var(--brown);}
+.win-box-sub{font-size:0.88rem;color:#C4874F;font-weight:700;margin-top:5px;line-height:1.6;}
+
+/* CONFETTI */
+.confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:300;}
+.cp{position:absolute;animation:cpFall linear forwards;}
+@keyframes cpFall{0%{transform:translateY(-30px) rotate(0);opacity:1;}100%{transform:translateY(105vh) rotate(900deg);opacity:0;}}
+
+/* MISC */
+.fixed-back{position:fixed;top:12px;left:12px;z-index:110;background:rgba(255,251,240,0.9);border:2.5px solid rgba(196,77,255,0.3);color:#C44DFF;border-radius:50px;padding:7px 16px;font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;cursor:pointer;transition:all 0.15s;display:none;backdrop-filter:blur(8px);}
+.reset-tiny{position:fixed;bottom:8px;left:10px;z-index:999;font-size:0.62rem;color:rgba(100,70,50,0.2);cursor:pointer;font-family:monospace;user-select:none;}
+.reset-tiny:hover{color:rgba(100,70,50,0.5);}
+
+/* ADMIN */
+#adminPanel{display:none;position:fixed;inset:0;z-index:500;background:linear-gradient(135deg,#1a0a2e,#2d1b4e,#0a1a2e);overflow-y:auto;padding:20px;}
+.adm-inner{max-width:720px;margin:0 auto;}
+.adm-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:10px;}
+.adm-hdr h2{font-family:'Baloo 2',cursive;color:#FFE66D;font-size:1.65rem;}
+.adm-close{background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.2);color:white;border-radius:50px;padding:7px 17px;font-family:'Baloo 2',cursive;font-size:0.88rem;cursor:pointer;}
+.adm-section-title{font-family:'Baloo 2',cursive;color:rgba(255,255,255,0.55);font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;margin:20px 0 10px;}
+.adm-promo{background:linear-gradient(135deg,#fff9e6,#fff3d0);border-radius:22px;padding:22px 20px;text-align:center;box-shadow:0 8px 28px rgba(0,0,0,0.4);border:3px solid #FFD700;margin-bottom:4px;}
+.adm-promo-title{font-family:'Baloo 2',cursive;font-weight:900;font-size:1.25rem;color:#3D2B1F;margin-bottom:4px;}
+.adm-promo-sub{font-size:0.78rem;color:#8B5E3C;font-weight:700;margin-bottom:14px;}
+.adm-promo-img{width:190px;height:190px;border-radius:12px;display:block;margin:0 auto 10px;border:3px solid #FFD700;}
+.adm-promo-url{font-size:0.68rem;color:#bbb;word-break:break-all;}
+.adm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:480px){.adm-grid{grid-template-columns:repeat(3,1fr);}}
+.qrc{background:white;border-radius:18px;padding:14px 10px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,0.3);}
+.qrc.rot{border:2.5px dashed #aaa;opacity:0.78;}
+.qrc-eggimg{width:36px;height:44px;object-fit:contain;display:block;margin:0 auto 4px;border-radius:50%/60%;}
+.qrc-name{font-family:'Baloo 2',cursive;font-weight:900;font-size:0.88rem;color:#3D2B1F;margin-bottom:2px;}
+.qrc-tag{font-size:0.65rem;color:#C44DFF;font-weight:700;margin-bottom:8px;}
+.qrc-img{width:128px;height:128px;border-radius:6px;display:block;margin:0 auto 7px;}
+.qrc-url{font-size:0.55rem;color:#ccc;word-break:break-all;}
+
+/* HINT ADMIN SECTION */
+.hint-admin-grid{display:flex;flex-direction:column;gap:10px;}
+.hint-admin-row{background:rgba(255,255,255,0.07);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;border:2px solid rgba(255,255,255,0.1);}
+.hint-admin-row.active{border-color:#4DFFB4;background:rgba(77,255,180,0.08);}
+.hint-admin-egg{width:32px;height:40px;object-fit:contain;border-radius:50%/60%;flex-shrink:0;}
+.hint-admin-info{flex:1;}
+.hint-admin-name{font-family:'Baloo 2',cursive;font-weight:900;font-size:0.9rem;color:white;}
+.hint-admin-text{font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:2px;}
+.hint-toggle{background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);border-radius:30px;padding:6px 16px;font-family:'Baloo 2',cursive;font-weight:800;font-size:0.82rem;cursor:pointer;transition:all 0.2s;flex-shrink:0;}
+.hint-toggle.on{background:rgba(77,255,180,0.2);border-color:#4DFFB4;color:#4DFFB4;}
+.hint-toggle:hover{transform:scale(1.05);}
+
+.adm-print{display:block;margin:20px auto 40px;background:linear-gradient(135deg,#FFE66D,#FF8C42);color:white;border:none;border-radius:50px;padding:13px 38px;font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 8px 24px rgba(255,140,66,0.4);}
+
+/* PRINT */
+@media print{
+  body,html{background:white!important;}
+  .clouds,.bg-float,.grass-layer,.meadow-scene,.topbar,.prog-bar-wrap,.fixed-back,.reset-tiny,.screen{display:none!important;}
+  #adminPanel{position:static!important;background:white!important;padding:8px!important;}
+  #adminPanel *{color:black!important;}
+  .adm-hdr button,.adm-print,.adm-section-title,.hint-admin-grid{display:none!important;}
+  .adm-grid{grid-template-columns:repeat(3,1fr)!important;gap:8px!important;}
+  .qrc{box-shadow:none!important;border:1.5px solid #ddd!important;border-radius:8px!important;page-break-inside:avoid;}
+  .adm-promo{border:2px solid #FFD700!important;box-shadow:none!important;page-break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+
+<div class="clouds"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div></div>
+<div class="bg-float" id="bgFloat"></div>
+<div class="grass-layer"><div class="grass-back"></div><div class="grass-front"></div></div>
+<div class="meadow-scene" id="meadowScene"></div>
+
+<div class="topbar" id="topbar">
+  <span class="topbar-logo">🐣 Velikonoční výzva</span>
+  <div class="topbar-right">
+    <button class="hint-topbtn" onclick="showHints()">💡 <span id="hintCountBadge"></span>Nápověda</button>
+    <button class="basket-topbtn" onclick="showScreen('main')">🧺 <span id="eggCountTop">0/10</span></button>
+  </div>
+</div>
+<div class="prog-bar-wrap" id="progWrap"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
+<button class="fixed-back" id="fixedBack" onclick="showScreen('main')">← Zpět</button>
+
+<!-- HOME -->
+<div class="screen active" id="screen-home">
+  <div class="sun"></div>
+  <div class="hanging-row">
+    <div class="hang-wrap" style="--delay:0s;--dur:2.2s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg1.jpg" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.55s;--dur:1.9s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg3.jpg" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.25s;--dur:2.05s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg5.jpg" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.8s;--dur:2.3s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg7.jpg" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.12s;--dur:1.85s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg9.jpg" alt=""></div>
+  </div>
+  <div class="home-card">
+    <span class="bunny-home">🐇</span>
+    <h1 class="home-title">Velikonoční výzva</h1>
+    <p class="home-sub">Velikonoční zajíc rozházel kraslice po celé škole!<br>Najdi schované QR kódy, splň úkoly a naplň košíček. 🥚</p>
+    <button class="btn-main" onclick="showScreen('main')">🐣 Jdu hledat!</button><br>
+    <button class="btn-ghost" onclick="showScreen('main')">Pokračovat ve hře</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="screen" id="screen-main">
+  <div class="main-inner">
+    <div class="scan-card">
+      <span class="scan-icon">📷</span>
+      <h2 class="scan-title">Hledej QR kódy!</h2>
+      <p class="scan-desc">Procházej školu a hledej schované kraslice s QR kódem.<br>Naskenuj ho a splň úkol — vajíčko spadne do košíčku! 🐣<br><small style="color:#C44DFF;font-weight:700;">💡 Stuck? Mrkni na nápovědy nahoře!</small></p>
+    </div>
+    <div class="basket-section">
+      <div class="basket-handle-row"><div class="basket-handle"></div></div>
+      <div class="basket-rim"></div>
+      <div class="basket-body">
+        <div class="basket-eggs-area" id="basketEggsArea">
+          <div class="basket-empty" id="basketEmpty">Košíček je prázdný... hledej! 🐇</div>
+        </div>
+      </div>
+      <div class="basket-count">Nasbíráno: <b id="eggCountMain">0</b> / 10 vajíček</div>
+    </div>
+    <button class="btn-main" style="font-size:1.05rem;padding:13px 32px;" onclick="checkWin()">🏆 Mám všechna vajíčka!</button>
+  </div>
+</div>
+
+<!-- WIN -->
+<div class="screen" id="screen-win">
+  <div class="confetti-wrap" id="confettiWrap"></div>
+  <div class="win-card">
+    <span class="win-trophy">🏆</span>
+    <h2 class="win-title">Výborně! Vyhrál/a jsi!</h2>
+    <p class="win-desc">Sesbíral/a jsi všechna vajíčka a zvládl/a každou výzvu. Jsi opravdový velikonoční šampion! 🐣✨</p>
+    <div class="win-box">
+      <span class="win-box-icon">🎁</span>
+      <div class="win-box-title">Jdi do ředitelny!</div>
+      <div class="win-box-sub">Ukaž tuto obrazovku a získej svou velikonoční odměnu!</div>
+    </div>
+    <button class="btn-main" onclick="showScreen('main')">🔄 Zpět na košíček</button>
+  </div>
+</div>
+
+<!-- TASK MODAL -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="modal" id="modal">
+    <button class="mclose" onclick="closeModal()">✕</button>
+    <div id="modalEggDisplay"></div>
+    <h3 class="m-title" id="mTitle"></h3>
+    <div id="mContent"></div>
+  </div>
+</div>
+
+<!-- HINT PANEL -->
+<div class="hint-overlay" id="hintOverlay" onclick="closeHintOverlay(event)">
+  <div class="hint-panel">
+    <button class="hint-close" onclick="closeHints()">✕</button>
+    <div class="hint-panel-title">💡 Nápovědy</div>
+    <div id="hintList"></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="adminPanel">
+  <div class="adm-inner">
+    <div class="adm-hdr">
+      <h2>🔐 Admin panel</h2>
+      <button class="adm-close" onclick="document.getElementById('adminPanel').style.display='none'">✕ Zavřít</button>
+    </div>
+
+    <div class="adm-section-title">📢 Propagační QR kód (na leták)</div>
+    <div class="adm-promo" id="admPromo">
+      <div class="adm-promo-title">🐣 Velikonoční výzva</div>
+      <div class="adm-promo-sub">Naskenuj a začni hrát!</div>
+      <img class="adm-promo-img" id="admPromoImg" src="" alt="">
+      <div class="adm-promo-url" id="admPromoUrl"></div>
+    </div>
+
+    <div class="adm-section-title">🥚 QR kódy k tisku (schovej po škole)</div>
+    <div class="adm-grid" id="admGrid"></div>
+    <button class="adm-print" onclick="window.print()">🖨️ Vytisknout QR kódy</button>
+
+    <div class="adm-section-title">💡 Nápovědy – postupné odhalování</div>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.8rem;font-weight:700;margin-bottom:12px;">Zapni nápovědu pro konkrétní vajíčko pokud žáci tápou. Nápověda se okamžitě zobrazí v jejich hře.</p>
+    <div class="hint-admin-grid" id="hintAdminGrid"></div>
+  </div>
+</div>
+
+<div class="reset-tiny" ondblclick="resetGame()">⚙ reset</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// ROTTEN EGG SVG (inline, no image needed)
+// ══════════════════════════════════════════════════════
+const ROTTEN_SVG = `<svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+  <defs><clipPath id="krot"><ellipse cx="40" cy="54" rx="33" ry="43"/></clipPath></defs>
+  <ellipse cx="40" cy="54" rx="33" ry="43" fill="#8A8A8A"/>
+  <g clip-path="url(#krot)">
+    <g fill="none" stroke="#444" stroke-width="2.8" stroke-linecap="round">
+      <polyline points="32,18 36,30 29,42 38,54"/><polyline points="54,23 58,35 50,46 57,58"/>
+      <polyline points="18,56 24,67 17,78"/><polyline points="52,62 57,73 50,84"/>
+    </g>
+    <g fill="none" stroke="rgba(60,60,60,0.6)" stroke-width="2.2" stroke-linecap="round">
+      <line x1="30" y1="44" x2="37" y2="51"/><line x1="37" y1="44" x2="30" y2="51"/>
+      <line x1="47" y1="42" x2="54" y2="49"/><line x1="54" y1="42" x2="47" y2="49"/>
+    </g>
+    <path d="M32,62 Q40,70 50,62" fill="none" stroke="rgba(60,60,60,0.55)" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <ellipse cx="27" cy="35" rx="9" ry="14" fill="rgba(255,255,255,0.15)" transform="rotate(-25,27,35)"/>
+  <ellipse cx="40" cy="54" rx="33" ry="43" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5,4"/>
+</svg>`;
+
+// ══════════════════════════════════════════════════════
+// TASKS
+// type: 'scan' | 'answer' | 'choice' | 'cipher'
+// ══════════════════════════════════════════════════════
+const TASKS = [
+  {
+    id:1, type:'scan', name:'Vajíčko #1'
+  },
+  {
+    id:2, type:'scan', name:'Vajíčko #2'
+  },
+  {
+    id:3, type:'scan', name:'Vajíčko #3'
+  },
+  {
+    id:4, type:'scan', name:'Vajíčko #4'
+  },
+  {
+    id:5, type:'scan', name:'Vajíčko #5'
+  },
+  {
+    id:6, type:'choice', name:'Vajíčko #6',
+    question:'Jak se jmenuje velikonoční prut ozdobený barevnými stužkami, kterým chlapci šlehají dívky?',
+    choices:['🌿 Pomlázka','🥚 Kraslice','🍞 Mazanec'],
+    answer:0
+  },
+  {
+    id:7, type:'cipher', name:'Vajíčko #7',
+    question:'Vyluštěte velikonoční šifru! Co je výsledkem posledního výpočtu?',
+    answer:'33'
+  },
+  {
+    id:8, type:'answer', name:'Vajíčko #8',
+    question:'Při jaké teplotě se vaří voda? (°C)',
+    answer:'100'
+  },
+  {
+    id:9, type:'answer', name:'Vajíčko #9',
+    question:'Z čeho se dělá velikonoční mazanec? Napiš jeden ingrediens.',
+    answer:['mouka','vejce','droždí','mléko','máslo','rozinky']
+  },
+  {
+    id:10, type:'answer', name:'Vajíčko #10',
+    question:'Jaké je heslo dne? (zeptej se učitele!)',
+    answer:'jaro2025'
+  },
+  {
+    id:11, name:'Zkažené vajíčko', rotten:true
+  }
+];
+
+// ══════════════════════════════════════════════════════
+// HINTS – teacher reveals these one by one
+// ══════════════════════════════════════════════════════
+const HINTS = [
+  {id:1, name:'Vajíčko #1', text:'Hledej tam, kde každý den škola začíná 🚪'},
+  {id:2, name:'Vajíčko #2', text:'Koukni za něco, co visí na zdi nebo stojí v koutě 📌'},
+  {id:3, name:'Vajíčko #3', text:'Je ukryté tam, kde jsou vědomosti uloženy v knihách 📚'},
+  {id:4, name:'Vajíčko #4', text:'Hledej poblíž vědy a přírody 🧪'},
+  {id:5, name:'Vajíčko #5', text:'Je tam, kde se tráví přestávky a doplňuje energie 🍎'},
+  {id:6, name:'Vajíčko #6', text:'Vzpomeň si na tradiční velikonoční zvyky v Čechách 🌿'},
+  {id:7, name:'Vajíčko #7', text:'Každý symbol má hodnotu — řeš rovnice postupně odshora 🔢'},
+  {id:8, name:'Vajíčko #8', text:'Fyzika a chemie ti pomůže — co víš o vodě? 💧'},
+  {id:9, name:'Vajíčko #9', text:'Přemýšlej o přísadách do kynutého těsta 🥐'},
+  {id:10, name:'Vajíčko #10', text:'Heslo se mění každý den — zeptej se dospělého ve škole 🔑'},
+];
+
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
+let completed = new Set(JSON.parse(localStorage.getItem('evVajicka')||'[]'));
+let visibleHints = new Set(JSON.parse(localStorage.getItem('evHints')||'[]'));
+let currentTask = null;
+
+function save(){ localStorage.setItem('evVajicka',JSON.stringify([...completed])); }
+function saveHints(){ localStorage.setItem('evHints',JSON.stringify([...visibleHints])); }
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+window.addEventListener('load',()=>{
+  spawnBg();
+  buildMeadow();
+  updateAll();
+  const p=new URLSearchParams(location.search);
+  const tid=parseInt(p.get('task'));
+  if(tid){
+    history.replaceState({},'',location.pathname);
+    showScreen('main');
+    setTimeout(()=>openTask(tid),500);
+  }
+});
+
+function spawnBg(){
+  const icons=['🐣','🥚','🐇','🌷','🌸','🌼','🐥','🦋','🌿','✨','🌻','🌈'];
+  const wrap=document.getElementById('bgFloat');
+  for(let i=0;i<22;i++){
+    const el=document.createElement('span');
+    el.className='bf';
+    el.textContent=icons[i%icons.length];
+    el.style.left=Math.random()*100+'vw';
+    el.style.bottom=(Math.random()*110)+'vh';
+    el.style.animationDuration=(10+Math.random()*16)+'s';
+    el.style.animationDelay=(Math.random()*8)+'s';
+    el.style.fontSize=(1.3+Math.random()*1.5)+'rem';
+    wrap.appendChild(el);
+  }
+}
+
+function buildMeadow(){
+  const scene=document.getElementById('meadowScene');
+  const flowers=[
+    {left:'4%',icon:'🌸',h:28,dur:'3.2s',del:'0s'},{left:'10%',icon:'🌼',h:22,dur:'2.8s',del:'0.4s'},
+    {left:'17%',icon:'🌷',h:32,dur:'3.5s',del:'0.9s'},{left:'24%',icon:'🌸',h:20,dur:'2.6s',del:'0.2s'},
+    {left:'31%',icon:'🌻',h:36,dur:'4s',del:'1.1s'},{left:'38%',icon:'🌼',h:24,dur:'3s',del:'0.6s'},
+    {left:'46%',icon:'🌷',h:28,dur:'3.3s',del:'1.4s'},{left:'54%',icon:'🌸',h:22,dur:'2.9s',del:'0.3s'},
+    {left:'61%',icon:'🌼',h:30,dur:'3.6s',del:'0.7s'},{left:'68%',icon:'🌻',h:26,dur:'2.7s',del:'1.2s'},
+    {left:'75%',icon:'🌷',h:32,dur:'3.1s',del:'0.5s'},{left:'82%',icon:'🌸',h:20,dur:'2.5s',del:'1s'},
+    {left:'89%',icon:'🌼',h:28,dur:'3.4s',del:'0.8s'},{left:'95%',icon:'🌷',h:24,dur:'3s',del:'0.1s'},
+  ];
+  flowers.forEach(f=>{
+    const w=document.createElement('div');w.className='flower';w.style.left=f.left;
+    w.innerHTML=`<span class="flower-head" style="animation-duration:${f.dur};animation-delay:${f.del};">${f.icon}</span><div class="flower-stem" style="height:${f.h}px;"></div>`;
+    scene.appendChild(w);
+  });
+  [{left:'6%',del:'0s',dur:'8s'},{left:'55%',del:'3s',dur:'10s'},{left:'78%',del:'1.5s',dur:'7s'}].forEach(c=>{
+    const el=document.createElement('div');el.className='chicken';
+    el.style.left=c.left;el.style.animationDuration=c.dur;el.style.animationDelay=c.del;el.textContent='🐓';
+    scene.appendChild(el);
+  });
+  [{left:'20%',bottom:'35px',del:'0s',dur:'5s'},{left:'65%',bottom:'42px',del:'2s',dur:'6.5s'},{left:'44%',bottom:'30px',del:'1s',dur:'4.5s'}].forEach(b=>{
+    const el=document.createElement('div');el.className='butterfly';
+    el.style.left=b.left;el.style.bottom=b.bottom;el.style.animationDuration=b.dur;el.style.animationDelay=b.del;el.textContent='🦋';
+    scene.appendChild(el);
+  });
+  [{left:'48%',del:'0s'},{left:'88%',del:'4s'}].forEach(b=>{
+    const el=document.createElement('div');el.className='bunny-peek';
+    el.style.left=b.left;el.style.animationDelay=b.del;el.textContent='🐇';
+    scene.appendChild(el);
+  });
+  [{left:'33%',del:'0s'},{left:'72%',del:'1.5s'}].forEach(e=>{
+    const el=document.createElement('div');el.className='grass-egg';
+    el.style.left=e.left;el.style.animationDelay=e.del;el.textContent='🥚';
+    scene.appendChild(el);
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// SCREENS
+// ══════════════════════════════════════════════════════
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  const isHome=id==='home';
+  document.getElementById('topbar').style.display=isHome?'none':'flex';
+  document.getElementById('progWrap').style.display=isHome?'none':'block';
+  document.getElementById('fixedBack').style.display=id==='win'?'block':'none';
+  if(id==='main') updateAll();
+  if(id==='win') launchConfetti();
+}
+
+// ══════════════════════════════════════════════════════
+// HUD + BASKET
+// ══════════════════════════════════════════════════════
+function updateAll(){
+  const n=[...completed].filter(id=>id!==11).length;
+  document.getElementById('eggCountTop').textContent=n+'/10';
+  document.getElementById('eggCountMain').textContent=n;
+  document.getElementById('progBar').style.width=(n/10*100)+'%';
+  // Hint badge
+  const hc=visibleHints.size;
+  document.getElementById('hintCountBadge').textContent=hc>0?`(${hc}) `:'';
+  renderBasket();
+}
+
+function renderBasket(){
+  const area=document.getElementById('basketEggsArea');
+  const collected=TASKS.filter(t=>!t.rotten&&completed.has(t.id));
+  if(collected.length===0){
+    area.innerHTML='<div class="basket-empty" id="basketEmpty">Košíček je prázdný... hledej! 🐇</div>';
+    return;
+  }
+  const existing=new Set([...area.querySelectorAll('.b-egg')].map(el=>parseInt(el.dataset.id)));
+  collected.forEach(t=>{
+    if(!existing.has(t.id)){
+      const wrap=document.createElement('div');
+      wrap.className='b-egg fresh';
+      wrap.dataset.id=t.id;
+      wrap.innerHTML=`<img src="eggs/egg${t.id}.jpg" alt="vajíčko ${t.id}">`;
+      const empty=area.querySelector('.basket-empty');
+      if(empty) empty.remove();
+      area.appendChild(wrap);
+      setTimeout(()=>wrap.classList.remove('fresh'),700);
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// MODAL – open task
+// ══════════════════════════════════════════════════════
+function openTask(id){
+  const t=TASKS.find(x=>x.id===id);
+  if(!t) return;
+  currentTask=t;
+
+  // Egg display
+  const display=document.getElementById('modalEggDisplay');
+  if(t.rotten){
+    display.className='modal-rotten-svg';
+    display.innerHTML=ROTTEN_SVG;
+  } else {
+    display.className='';
+    display.innerHTML=`<img class="modal-egg-img" src="eggs/egg${t.id}.jpg" alt="">`;
+  }
+
+  document.getElementById('mTitle').textContent=t.rotten?'Zkažené vajíčko! 🤢':t.name;
+  const content=document.getElementById('mContent');
+
+  if(t.rotten){
+    content.innerHTML=`<p class="rotten-desc">Toto vajíčko páchne podezřele...<br>Opravdu chceš zjistit, co se uvnitř skrývá? 🤢💨</p><a class="rickroll-btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">🎵 Otevřít záhadný obsah...</a>`;
+    document.getElementById('overlay').classList.add('open');
+    return;
+  }
+
+  const done=completed.has(t.id);
+  if(done){
+    content.innerHTML=`<div class="done-msg">✅ Toto vajíčko už máš v košíčku!</div>`;
+    document.getElementById('overlay').classList.add('open');
+    return;
+  }
+
+  switch(t.type){
+    case 'scan':
+      content.innerHTML=`
+        <span class="scan-found">🎉</span>
+        <p class="scan-found-text">Výborně! Našel/a jsi vajíčko!<br>Klepni na tlačítko a přidej ho do košíčku.</p>
+        <button class="btn-collect" onclick="collectEgg(${t.id})">🧺 Přidat do košíčku!</button>`;
+      break;
+
+    case 'answer':
+      content.innerHTML=`
+        <div class="m-question">${t.question}</div>
+        <div class="ans-row">
+          <input class="ans-inp" id="ansInp" type="text" placeholder="Tvoje odpověď..." autocomplete="off" autocorrect="off" spellcheck="false">
+          <button class="ans-btn" onclick="checkAns()">✔</button>
+        </div>
+        <div class="feedback" id="feedback"></div>`;
+      setTimeout(()=>{const i=document.getElementById('ansInp');if(i){i.focus();i.addEventListener('keydown',e=>{if(e.key==='Enter')checkAns();});}},300);
+      break;
+
+    case 'choice':
+      content.innerHTML=`
+        <div class="m-question">${t.question}</div>
+        <div class="choices-grid">
+          ${t.choices.map((c,i)=>`<div class="choice-card" id="choice${i}" onclick="selectChoice(${i})">${c}</div>`).join('')}
+        </div>
+        <div class="feedback" id="feedback"></div>`;
+      break;
+
+    case 'cipher':
+      content.innerHTML=`
+        <div class="m-question">${t.question}</div>
+        <img src="eggs/cipher.jpg" class="cipher-img" alt="Velikonoční šifra">
+        <div class="ans-row">
+          <input class="ans-inp" id="ansInp" type="text" placeholder="Výsledek..." autocomplete="off" spellcheck="false">
+          <button class="ans-btn" onclick="checkAns()">✔</button>
+        </div>
+        <div class="feedback" id="feedback"></div>`;
+      setTimeout(()=>{const i=document.getElementById('ansInp');if(i){i.focus();i.addEventListener('keydown',e=>{if(e.key==='Enter')checkAns();});}},300);
+      break;
+  }
+
+  document.getElementById('overlay').classList.add('open');
+}
+
+// Scan task – instant collect
+function collectEgg(id){
+  completed.add(id);
+  save();
+  updateAll();
+  closeModal();
+  const n=[...completed].filter(id=>id!==11).length;
+  if(n>=10) setTimeout(()=>showScreen('win'),400);
+}
+
+// Answer / Cipher check
+function checkAns(){
+  const inp=document.getElementById('ansInp'),fb=document.getElementById('feedback');
+  if(!inp||!currentTask) return;
+  const val=inp.value.trim().toLowerCase();
+  const correct=Array.isArray(currentTask.answer)
+    ?currentTask.answer.map(a=>a.toLowerCase()).includes(val)
+    :currentTask.answer.toLowerCase()===val;
+  if(correct){
+    fb.textContent='🎉 Správně! Vajíčko letí do košíčku!';fb.className='feedback ok';
+    completed.add(currentTask.id);save();updateAll();
+    setTimeout(()=>{closeModal();const n=[...completed].filter(id=>id!==11).length;if(n>=10)setTimeout(()=>showScreen('win'),400);},1300);
+  } else {
+    fb.textContent='❌ Zkus to znovu!';fb.className='feedback err';
+    inp.style.borderColor='#FF6B9D';setTimeout(()=>{inp.style.borderColor='';},900);
+  }
+}
+
+// Choice task check
+function selectChoice(idx){
+  if(!currentTask||currentTask.type!=='choice') return;
+  const cards=document.querySelectorAll('.choice-card');
+  const fb=document.getElementById('feedback');
+  cards.forEach(c=>c.style.pointerEvents='none');
+  if(idx===currentTask.answer){
+    cards[idx].classList.add('correct');
+    if(fb){fb.textContent='🎉 Správně!';fb.className='feedback ok';}
+    completed.add(currentTask.id);save();updateAll();
+    setTimeout(()=>{closeModal();const n=[...completed].filter(id=>id!==11).length;if(n>=10)setTimeout(()=>showScreen('win'),400);},1400);
+  } else {
+    cards[idx].classList.add('wrong');
+    if(fb){fb.textContent='❌ Špatně! Zkus znovu.';fb.className='feedback err';}
+    setTimeout(()=>{cards[idx].classList.remove('wrong');cards.forEach(c=>c.style.pointerEvents='');},800);
+  }
+}
+
+function closeModal(){document.getElementById('overlay').classList.remove('open');currentTask=null;}
+function closeOverlay(e){if(e.target===document.getElementById('overlay'))closeModal();}
+
+// ══════════════════════════════════════════════════════
+// HINTS
+// ══════════════════════════════════════════════════════
+function showHints(){
+  const list=document.getElementById('hintList');
+  const visible=HINTS.filter(h=>visibleHints.has(h.id));
+  if(visible.length===0){
+    list.innerHTML=`<div class="hint-empty">Zatím žádné nápovědy...<br>Hledej dál! 🐇</div>`;
+  } else {
+    list.innerHTML=visible.map(h=>`
+      <div class="hint-card">
+        <div class="hint-card-egg">
+          <img src="eggs/egg${h.id}.jpg" alt="">
+          ${h.name}
+        </div>
+        <div class="hint-card-text">${h.text}</div>
+      </div>`).join('');
+  }
+  document.getElementById('hintOverlay').classList.add('open');
+}
+function closeHints(){document.getElementById('hintOverlay').classList.remove('open');}
+function closeHintOverlay(e){if(e.target===document.getElementById('hintOverlay'))closeHints();}
+
+// ══════════════════════════════════════════════════════
+// WIN
+// ══════════════════════════════════════════════════════
+function checkWin(){
+  const n=[...completed].filter(id=>id!==11).length;
+  if(n>=10) showScreen('win');
+  else alert(`Ještě nemáš všechna vajíčka! Máš ${n}/10. Hledej dál! 🥚`);
+}
+
+function launchConfetti(){
+  const wrap=document.getElementById('confettiWrap');wrap.innerHTML='';
+  const cols=['#FF6B9D','#FFE66D','#4DFFB4','#C44DFF','#FF8C42','#4DC3FF','#57CC99'];
+  const emos=['🥚','🐣','🌷','✨','🎉','🌸','🐇'];
+  for(let i=0;i<80;i++){
+    const el=document.createElement('div');el.className='cp';
+    el.style.left=Math.random()*100+'vw';el.style.top='-20px';
+    el.style.animationDelay=Math.random()*2.8+'s';el.style.animationDuration=(1.6+Math.random()*2.4)+'s';
+    if(Math.random()>0.42){el.style.width=el.style.height=(7+Math.random()*9)+'px';el.style.borderRadius=Math.random()>0.5?'50%':'3px';el.style.background=cols[Math.floor(Math.random()*cols.length)];}
+    else{el.style.fontSize='1.3rem';el.textContent=emos[Math.floor(Math.random()*emos.length)];}
+    wrap.appendChild(el);
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// ADMIN – ?admin=1
+// ══════════════════════════════════════════════════════
+(function(){
+  const p=new URLSearchParams(location.search);
+  if(p.get('admin')==='1'){
+    history.replaceState({},'',location.pathname);
+    buildAdmin();
+    document.getElementById('adminPanel').style.display='block';
+  }
+})();
+
+function buildAdmin(){
+  const base=location.href.split('?')[0];
+  // Promo QR
+  document.getElementById('admPromoUrl').textContent=base;
+  document.getElementById('admPromoImg').src=`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(base)}&color=3d2b1f&bgcolor=fff9e6&margin=10`;
+
+  // Task QR codes
+  const grid=document.getElementById('admGrid');grid.innerHTML='';
+  TASKS.forEach(t=>{
+    const url=`${base}?task=${t.id}`;
+    const qr=`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(url)}&color=1a0a2e&bgcolor=ffffff&margin=6`;
+    const card=document.createElement('div');
+    card.className='qrc'+(t.rotten?' rot':'');
+    const eggDisplay=t.rotten
+      ?`<div style="width:36px;margin:0 auto 4px;">${ROTTEN_SVG}</div>`
+      :`<img class="qrc-eggimg" src="eggs/egg${t.id}.jpg" alt="">`;
+    card.innerHTML=`${eggDisplay}<div class="qrc-name">${t.rotten?'💀 Zkažené vajíčko':t.name}</div><div class="qrc-tag">${t.rotten?'Schovej jako past! 😈':{scan:'📷 Jen naskenovat',answer:'✏️ Odpověď',choice:'🔘 Výběr',cipher:'🔐 Šifra'}[t.type]||''}</div><img class="qrc-img" src="${qr}" loading="lazy" alt="QR"><div class="qrc-url">${url}</div>`;
+    grid.appendChild(card);
+  });
+
+  // Hint toggles
+  buildAdminHints();
+}
+
+function buildAdminHints(){
+  const grid=document.getElementById('hintAdminGrid');grid.innerHTML='';
+  HINTS.forEach(h=>{
+    const on=visibleHints.has(h.id);
+    const row=document.createElement('div');
+    row.className='hint-admin-row'+(on?' active':'');
+    row.id='hadminrow'+h.id;
+    row.innerHTML=`<img class="hint-admin-egg" src="eggs/egg${h.id}.jpg" alt=""><div class="hint-admin-info"><div class="hint-admin-name">${h.name}</div><div class="hint-admin-text">${h.text}</div></div><button class="hint-toggle${on?' on':''}" id="hadminbtn${h.id}" onclick="toggleHint(${h.id})">${on?'✅ Zapnuta':'⬜ Vypnuta'}</button>`;
+    grid.appendChild(row);
+  });
+}
+
+function toggleHint(id){
+  if(visibleHints.has(id)) visibleHints.delete(id);
+  else visibleHints.add(id);
+  saveHints();
+  updateAll();
+  // Update button + row
+  const on=visibleHints.has(id);
+  const btn=document.getElementById('hadminbtn'+id);
+  const row=document.getElementById('hadminrow'+id);
+  if(btn){btn.textContent=on?'✅ Zapnuta':'⬜ Vypnuta';btn.className='hint-toggle'+(on?' on':'');}
+  if(row){row.className='hint-admin-row'+(on?' active':'');}
+}
+
+function resetGame(){
+  if(confirm('Resetovat hru? Smaže veškerý postup žáků!')){
+    completed.clear();save();
+    document.getElementById('basketEggsArea').innerHTML='<div class="basket-empty" id="basketEmpty">Košíček je prázdný... hledej! 🐇</div>';
+    updateAll();showScreen('home');
+  }
+}
+</script>
+</body>
+</html>
