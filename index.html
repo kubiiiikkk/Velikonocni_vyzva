@@ -268,11 +268,11 @@ body{font-family:'Quicksand',sans-serif;background:linear-gradient(180deg,#87CEE
 <div class="screen active" id="screen-home">
   <div class="sun"></div>
   <div class="hanging-row">
-    <div class="hang-wrap" style="--delay:0s;--dur:2.2s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg1.jpg" alt=""></div>
-    <div class="hang-wrap" style="--delay:0.55s;--dur:1.9s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg3.jpg" alt=""></div>
-    <div class="hang-wrap" style="--delay:0.25s;--dur:2.05s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg5.jpg" alt=""></div>
-    <div class="hang-wrap" style="--delay:0.8s;--dur:2.3s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg7.jpg" alt=""></div>
-    <div class="hang-wrap" style="--delay:0.12s;--dur:1.85s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg9.jpg" alt=""></div>
+    <div class="hang-wrap" style="--delay:0s;--dur:2.2s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg1.png" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.55s;--dur:1.9s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg3.png" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.25s;--dur:2.05s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg5.png" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.8s;--dur:2.3s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg7.png" alt=""></div>
+    <div class="hang-wrap" style="--delay:0.12s;--dur:1.85s"><div class="hang-string"></div><img class="hang-egg-img" src="eggs/egg9.png" alt=""></div>
   </div>
   <div class="home-card">
     <span class="bunny-home">🐇</span>
@@ -578,7 +578,7 @@ function renderBasket(){
       const wrap=document.createElement('div');
       wrap.className='b-egg fresh';
       wrap.dataset.id=t.id;
-      wrap.innerHTML=`<img src="eggs/egg${t.id}.jpg" alt="vajíčko ${t.id}">`;
+      wrap.innerHTML=`<img src="eggs/egg${t.id}.png" alt="vajíčko ${t.id}">`;
       const empty=area.querySelector('.basket-empty');
       if(empty) empty.remove();
       area.appendChild(wrap);
@@ -602,7 +602,7 @@ function openTask(id){
     display.innerHTML=ROTTEN_SVG;
   } else {
     display.className='';
-    display.innerHTML=`<img class="modal-egg-img" src="eggs/egg${t.id}.jpg" alt="">`;
+    display.innerHTML=`<img class="modal-egg-img" src="eggs/egg${t.id}.png" alt="">`;
   }
 
   document.getElementById('mTitle').textContent=t.rotten?'Zkažené vajíčko! 🤢':t.name;
@@ -726,7 +726,7 @@ function showHints(){
     list.innerHTML=visible.map(h=>`
       <div class="hint-card">
         <div class="hint-card-egg">
-          <img src="eggs/egg${h.id}.jpg" alt="">
+          <img src="eggs/egg${h.id}.png" alt="">
           ${h.name}
         </div>
         <div class="hint-card-text">${h.text}</div>
@@ -787,7 +787,7 @@ function buildAdmin(){
     card.className='qrc'+(t.rotten?' rot':'');
     const eggDisplay=t.rotten
       ?`<div style="width:36px;margin:0 auto 4px;">${ROTTEN_SVG}</div>`
-      :`<img class="qrc-eggimg" src="eggs/egg${t.id}.jpg" alt="">`;
+      :`<img class="qrc-eggimg" src="eggs/egg${t.id}.png" alt="">`;
     card.innerHTML=`${eggDisplay}<div class="qrc-name">${t.rotten?'💀 Zkažené vajíčko':t.name}</div><div class="qrc-tag">${t.rotten?'Schovej jako past! 😈':{scan:'📷 Jen naskenovat',answer:'✏️ Odpověď',choice:'🔘 Výběr',cipher:'🔐 Šifra'}[t.type]||''}</div><img class="qrc-img" src="${qr}" loading="lazy" alt="QR"><div class="qrc-url">${url}</div>`;
     grid.appendChild(card);
   });
@@ -803,7 +803,7 @@ function buildAdminHints(){
     const row=document.createElement('div');
     row.className='hint-admin-row'+(on?' active':'');
     row.id='hadminrow'+h.id;
-    row.innerHTML=`<img class="hint-admin-egg" src="eggs/egg${h.id}.jpg" alt=""><div class="hint-admin-info"><div class="hint-admin-name">${h.name}</div><div class="hint-admin-text">${h.text}</div></div><button class="hint-toggle${on?' on':''}" id="hadminbtn${h.id}" onclick="toggleHint(${h.id})">${on?'✅ Zapnuta':'⬜ Vypnuta'}</button>`;
+    row.innerHTML=`<img class="hint-admin-egg" src="eggs/egg${h.id}.png" alt=""><div class="hint-admin-info"><div class="hint-admin-name">${h.name}</div><div class="hint-admin-text">${h.text}</div></div><button class="hint-toggle${on?' on':''}" id="hadminbtn${h.id}" onclick="toggleHint(${h.id})">${on?'✅ Zapnuta':'⬜ Vypnuta'}</button>`;
     grid.appendChild(row);
   });
 }
